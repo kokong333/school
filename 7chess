@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>체크무늬 패턴 (사각형 크기 조정)</title>
+<style>
+canvas {
+border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="400"></canvas>
+<script>
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+// 체크무늬 속성 정의 (필요에 따라 조정 가능)
+const squareSize = 40; // 각 사각형의 크기 (40px로 변경)
+const numSquaresX = canvas.width / squareSize; // 가로 방향 사각형 개수
+const numSquaresY = canvas.height / squareSize; // 세로 방향 사각형 개수
+const lightColor = '#FFFFFF'; // 밝은색 (흰색)
+const darkColor = '#A9BCF5'; // 어두운색
+
+function drawCheckerboard() {
+for (let y = 0; y < numSquaresY; y++) {
+for (let x = 0; x < numSquaresX; x++) {
+// 밝고 어두운 색을 번갈아 표현
+const isDarkSquare = (y % 2 === 0 && x % 2 === 1) || (y % 2 === 1 && x % 2 === 0);
+ctx.fillStyle = isDarkSquare ? darkColor : lightColor;
+ctx.fillRect(x * squareSize, y * squareSize, squareSize, squareSize);
+}
+}
+}
+
+drawCheckerboard();
+</script>
+</body>
+</html>
